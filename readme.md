@@ -18,6 +18,7 @@
 * Create report
 * Manage users
 * Manage baby gears
+* Email blast
 
 #### For User
 * Show all baby gears
@@ -73,7 +74,20 @@ flask run
 localhost:5000
 ```
 
+#### Default admin account
+Email: admin@admin.com
+password: admin
+
 ## Screenshot
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/9febec47-e3d9-49c0-a0d2-3a4e7cf2406b)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/1d590d23-0fb0-4c9e-83c6-0505f4ff31fd)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/0f7db101-621b-4db0-afcd-877b535527fe)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/863f7c5c-501f-4e9d-8257-2acfd074bd01)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/97be0d05-dbc9-400f-9933-8e658248a1a9)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/c6fe7ad6-bbb2-47db-860f-236d38301b4e)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/856ea759-1e1a-4edd-90ee-d1b6a4d85ae7)
+![image](https://github.com/shirousaberx/baby-gear-store/assets/71808405/b512ed19-d6a5-4d5c-986e-5eacca804d66)
+
 
 ## Acknowledgement
 My team members who built this alongside me:
