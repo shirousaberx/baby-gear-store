@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}       
+		<div class="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="titlepage text_align_center">
+							<h2>Perpanjang Masa Sewa atau Perbanyak Sewa Barang</h2>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-12 text-center">
+                        <img class="img-thumbnail" src="{{url_for('static', filename='images/produk/' + data[4])}}" alt="gambar barang" style="width: 250px;">
+                        <h2 class="mt-5 mb-3 d-block"><b>{{data[1]}}</b></h2>
+                        <h3 class="mb-4 d-block">{{data[2]}}</h3>
+                        <h2 class="d-block mb-5">Sewa per bulan:<br /><span class="uang">{{data[3]}}</span></h2>
+					</div>
+				</div>
+
+                
+                <form action="#" method="POST">
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="lama-sewa" class="col-xs-4 col-form-label col-form-label-lg"><h2>Lama Sewa (dalam Bulan):</h2></label>
+                        <div class="col-sm-2">
+                            <input required type="number" name="lama-sewa" min="0" class="form-control form-control-lg" id="lama-sewa" placeholder="0">
+                        </div>
+                        <label for="jumlah" class="col-xs-4 col-form-label col-form-label-lg"><h2>Jumlah:</h2></label>
+                        <div class="col-sm-2">
+                            <input required type="number" name="jumlah" min="0" class="form-control form-control-lg" id="jumlah" placeholder="0">
+                        </div>
+                        <!-- input di bawah ini hidden untuk mengirim id produk dalam request -->
+                        <input type="hidden" name="id_produk" value="{{data[0]}}">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <button class="btn btn-block btn-lg btn-primary" type="submit">Edit Sewa</button>
+                        </div>
+                    </div>
+                </form>
+
+			</div>
+		</div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<!-- form register -->
+	<div class="contact">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-12">
+					<div class="titlepage text_align_center">
+						<h2>Register</h2>
+					</div>
+				</div>
+				<div class="col-md-12">
+					
+					<form action="/register" method="POST">
+					
+						<div class="form-group">
+								<label for="inputAddress">Nama Lengkap</label>
+								<input type="text" class="form-control" name='nama' placeholder="Michael Jackson">
+						</div>
+						
+							<div class="form-row">
+							<div class="form-group col-md-6">
+							  <label for="inputEmail4">Email</label>
+							  <input type="email" class="form-control" name='email' placeholder="Email" required="required">
+							</div>
+							<div class="form-group col-md-6">
+							  <label for="inputPassword4">Password</label>
+							  <input type="password" class="form-control" name= 'password' placeholder="Password" required="required">
+							</div>
+						  </div>
+						  
+						  <div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputDate">Tanggal Lahir</label>
+									<input type="date" class="form-control" name='tgl_lahir'>
+								</div>
+						  </div>
+
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Alamat</label>
+								<textarea class="form-control" name="alamat" placeholder="isi alamat" rows="6"></textarea>
+							</div>
+					  	  </div>
+						  
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputGender">Jenis Kelamin</label>
+								<div class="radio-container">
+									<input type="radio" name="gender" value="Pria" />
+									Laki-Laki
+									<input type="radio" name="gender" value="Wanita" checked />
+									Wanita
+								</div>
+							</div>
+						  </div>
+						
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputHobby">Hobi</label>
+								<div class="radio-container">
+									<input type="checkbox" name="hobi" value="Membaca" checked/>
+									Membaca
+									<input type="checkbox" name="hobi" value="Menulis"/>
+									Menulis
+									<input type="checkbox" name="hobi" value="Bermain Games"/>
+									Bermain Games
+								</div>
+							</div>
+						  </div>
+
+						  <button type="submit" class="btn btn-primary">Save</button>  
+						  <button type="reset" class="btn btn-dark">Clear</button>  
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end form register -->
+{% endblock %}

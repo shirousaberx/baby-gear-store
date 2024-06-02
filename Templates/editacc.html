@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<!-- form register -->
+	<div class="contact">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-12">
+					<div class="titlepage text_align_center">
+						<h2>Edit Account</h2>
+					</div>
+				</div>
+				<div class="col-md-12">
+					{% for row in data %}
+					<form action="/edit_account" method="POST">
+					
+						<div class="form-group">
+								<label for="inputAddress">Nama Lengkap</label>
+								<input type="text" class="form-control" name='nama' value="{{row[1]}}">
+						</div>
+						
+							<div class="form-row">
+							<div class="form-group col-md-6">
+							  <label for="inputEmail4">Email</label>
+							  <input type="email" class="form-control" name='email' value="{{row[2]}}" readonly>
+							</div>
+							<div class="form-group col-md-6">
+							  <label for="inputPassword4">Password</label>
+							  <input type="password" class="form-control" name= 'password' value="{{row[3]}}">
+							</div>
+						  </div>
+						  
+						  <div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputDate">Tanggal Lahir</label>
+									<input type="date" class="form-control" name='tgl_lahir' value="{{row[4]}}">
+								</div>
+						  </div>
+
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Alamat</label>
+								<textarea class="form-control" name="alamat" rows="6">{{row[5]}}</textarea>
+							</div>
+					  	  </div>
+						  
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputGender">Jenis Kelamin</label>
+								<div class="radio-container">
+									<input type="radio" name="gender" value="Pria" {% if row[6] == 'Pria' %}checked{% endif %}/>
+									Laki-Laki
+									<input type="radio" name="gender" value="Wanita" {% if row[6] == 'Wanita' %}checked{% endif %}/>
+									Wanita
+								</div>
+							</div>
+						  </div>
+						
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputHobby">Hobi</label>
+								<div class="radio-container">
+									<input type="checkbox" name="hobi" value="Membaca" {% if 'Membaca' in row[7] %}checked{% endif %} />
+									Membaca
+									<input type="checkbox" name="hobi" value="Menulis" {% if 'Menulis' in row[7] %}checked{% endif %} />
+									Menulis
+									<input type="checkbox" name="hobi" value="Bermain Games" {% if 'Bermain Games' in row[7] %}checked{% endif %} />
+									Bermain Games
+								</div>
+							</div>
+						  </div>
+
+						  <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputStatus">Role Akses</label>
+								<select name= 'role' disabled>
+									<option value= "User" {% if row[8] == 'User' %}selected{% endif %}>User</option>
+									<option value= "Administrator" {% if row[8] == 'Administrator' %}selected{% endif %}>Administrator</option>
+								</select>
+							</div>
+						  </div>
+
+						  <button type="submit" class="btn btn-primary">Save</button>  
+            
+					</form>
+          {% endfor %}  
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end form register -->
+{% endblock %}

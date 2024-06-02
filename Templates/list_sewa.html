@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% for message, category in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+		<!-- table -->
+		<div class="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="titlepage text_align_center">
+							<h2>List Barang yang Disewa</h2>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-md-12">
+						<table class="table table-hover">
+							<thead>
+								<tr class="text-center">
+									<th scope="col">Gambar Barang</th>
+									<th scope="col">Nama Barang</th>
+									<th scope="col">Tanggal Sewa</th>
+									<th scope="col">Lama Sewa</th>
+									<th scope="col">Tanggal Pengembalian</th>
+									<th scope="col">Jumlah</th>
+									<th scope="col">Biaya Sewa</th>
+									<th scope="col">Subtotal</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+                                {% for row in data %}
+								<tr class="text-center">
+									<td class="align-middle"><img class="rounded" style="height: 6rem;" src="{{url_for('static', filename='images/produk/' + row[2])}}" alt=""></td>
+									<td class="align-middle">{{row[3]}}</td>
+									<td class="align-middle">{{row[4]}}</td>
+									<td class="align-middle">{{row[5]}} bulan</td>
+									<td class="align-middle">{{row[6]}}</td>
+									<td class="align-middle">{{row[7]}}</td>
+									<td class="align-middle uang">{{row[8]}}</td>
+									<td class="align-middle uang">{{row[9]}}</td>
+									<td class="align-middle">
+                                        <a href="{{url_for('edit_sewa', id_sewa=row[0], id_produk=row[1])}}" type="button" class="btn btn-primary btn-sm btn-block">Perpanjang sewa</a>
+                                        <a href="{{url_for('delete_sewa', id_sewa=row[0])}}" type="button" class="btn btn-danger btn-sm btn-block">Kembalikan barang</a>
+                                    </td>
+								</tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end table -->
+{% endblock %}

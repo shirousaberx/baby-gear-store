@@ -1,0 +1,147 @@
+{% extends 'layout.html' %} {% block content %} {% for message, category in get_flashed_messages(with_categories=True) %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+<!-- table -->
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage text_align_center">
+          <h2>List Barang yang Disewa</h2>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row pb-3">
+        <div class="col-md-2">
+          <a href="/pdf/history" class="btn btn-primary">Convert Pdf All</a>
+        </div>
+        <div class="col-md-3">
+          <div class="input-group">
+            <label for="search" class="input-group-text">By Search</label>
+            <input type="text" id="search" oninput="filterSearch()" class="form-control" placeholder="Search..." />
+          </div>
+        </div>
+        {# Form pdf #}
+        <form action="/pdf/byfilter" method="POST">
+        <div class="col-md-3">
+          <div class="input-group">
+            <label for="category" class="input-group-text">By Category</label>
+            <select id="category" name="category" class="form-select" onchange="filterCategory()">
+              <option value="all">All</option>
+              {% for row in data %}
+              <option value="{{row[2]}}">{{row[2]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="input-group">
+              <label for="category" class="input-group-text">By Date</label>
+              <input type="date" id="date" name="date" oninput="filterDate()" class="form-control" placeholder="Search..." />
+              <button type="submit" class="btn btn-primary">Convert PDF By Date</button>  
+            </div>
+          </div>
+        </form>
+        {# Form End #}
+        </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-hover">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">Nama</th>
+                <th scope="col">Produk</th>
+                <th scope="col">Tanggal Sewa</th>
+                <th scope="col">Lama Sewa</th>
+              </tr>
+            </thead>
+            <tbody id="filteredData">
+              <!-- Gunakan ID baru untuk menampilkan data yang difilter -->
+              {% for row in data %}
+              <tr class="text-center">
+                <td class="align-middle">{{row[1]}}</td>
+                <td class="align-middle">{{row[2]}}</td>
+                <td class="align-middle">{{row[3]}}</td>
+                <td class="align-middle">{{row[4]}} Bulan</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          getOption();
+        });
+        
+        function filterCategory() {
+          var categorySelect = document.getElementById("category");
+          var selectedCategory = categorySelect.value.toLowerCase();
+          if (selectedCategory === "all") {
+            selectedCategory = ""; // Set to empty string to indicate no specific category
+          } else {
+            selectedCategory = selectedCategory.toLowerCase();
+          }
+          filterTable("", selectedCategory, "");
+        }
+        
+        function filterSearch() {
+          var searchElement = document.getElementById("search");
+          var searchTerm = searchElement.value.toLowerCase();
+          filterTable(searchTerm, "", "");
+        }
+        
+        function filterDate() {
+          var dateElement = document.getElementById("date");
+          var selectedDate = dateElement.value;
+          filterTable("", "", selectedDate);
+        }
+        
+        function filterTable(searchTerm, selectedCategory, selectedDate) {
+          var rows = document.getElementById("filteredData").getElementsByTagName("tr");
+        
+          for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var display = true; // Assume it should be displayed by default
+        
+            var categoryValue = cells[1].innerText.toLowerCase();
+            var dateValue = cells[2].innerText;
+        
+            // Check if the row should be displayed based on the filter criteria
+            if (
+              (searchTerm !== "" && !containsText(cells, searchTerm)) ||
+              (selectedCategory !== "" && categoryValue !== selectedCategory) ||
+              (selectedDate !== "" && dateValue !== selectedDate)
+            ) {
+              display = false;
+            }
+        
+            rows[i].style.display = display ? "table-row" : "none";
+          }
+        }
+        
+        function containsText(cells, searchTerm) {
+          for (var j = 0; j < cells.length; j++) {
+            var textValue = cells[j].innerText.toLowerCase();
+            if (textValue.indexOf(searchTerm) !== -1) {
+              return true;
+            }
+          }
+          return false;
+        }
+        
+      </script>
+    </div>
+  </div>
+  <!-- end table -->
+  {% endblock %}
+</div>

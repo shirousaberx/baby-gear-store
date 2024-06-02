@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        color: #000000;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .table-primary {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .align-middle {
+        vertical-align: middle;
+      }
+
+      b {
+        color: red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="col-md-12">
+      <div class="titlepage text_align_center">
+        <h2>List Barang yang Disewa</h2>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col">Nama</th>
+          <th scope="col">Produk</th>
+          <th scope="col">Tanggal Sewa</th>
+          <th scope="col">Lama Sewa</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if data|length == 0 %}
+        <tr>
+          <td colspan="4"><b>No Entry Has Been Added</b></td>
+        </tr>
+        {% else %} {% for row in data %}
+        <tr class="text-center">
+          <td class="align-middle">{{row[1]}}</td>
+          <td class="align-middle">{{row[2]}}</td>
+          <td class="align-middle">{{row[3]}}</td>
+          <td class="align-middle">{{row[4]}} Bulan</td>
+        </tr>
+        {% endfor %} {% endif %}
+      </tbody>
+    </table>
+  </body>
+</html>
